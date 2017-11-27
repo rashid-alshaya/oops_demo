@@ -31,7 +31,9 @@ class TextCalculate implements TextCalculateInterface
    * @return int
    */
   public function calculateText($text, array $stopWords, $type = 'json') {
-    
+    /**
+     * Display error message in case of invalid text string.
+     */
     if($this->validateText($text)){
       return "Please provide the valid text. Special characters are not allowed in the Text string.";
     }
