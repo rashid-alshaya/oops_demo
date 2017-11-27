@@ -42,7 +42,7 @@ class TextService
  */
 $text = new Text();
 $text->setType('arr');
-$text->setText('Lorem ipsum dolor aa aa sit amet ex bb his altera aa latine bb');
+$text->setText('Lorem ipsum dolor aa aa s$it amet ex bb his altera aa latine bb');
 $text->setStopWords(array('Lorem','his','latine'));
 
 /**

@@ -16,9 +16,12 @@ class TextCalculate implements TextCalculateInterface
    * @return string
    */
   public function validateText($text) {
-    if(!empty($text))
+    if(!empty($text)){
+      if(strpos($text, '  ') !== FALSE) {
+        return 1;
+      }
       return preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', trim(preg_replace('/\s+/', ' ', $text)));
-    else
+    }else
       return "Plese provide some text.";
   }
   
@@ -35,7 +38,7 @@ class TextCalculate implements TextCalculateInterface
      * Display error message in case of invalid text string.
      */
     if($this->validateText($text)){
-      return "Please provide the valid text. Special characters are not allowed in the Text string.";
+      return "Please provide a valid text string. Special characters and extra spaces are not allowed in the Text string.";
     }
     $strArr = explode(' ', $text);
     for($i = 0; $i < count($stopWords); $i++){
