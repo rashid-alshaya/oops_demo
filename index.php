@@ -17,19 +17,12 @@ class TextService
   private $textCalculateService;
   
   /**
-   * contains the object of text class.
-   * @var type
-   */
-  private $text;
-  
-  /**
    * Contains and assign the textCalculate and Text class object into class variables.
    * @param TextCalculateInterface $textCalculate
    * @param TextInterface $textServ
    */
-  public function __construct(TextCalculateInterface $textCalculate, TextInterface $textServ){    
+  public function __construct(TextCalculateInterface $textCalculate){    
     $this->textCalculateService = $textCalculate;
-    $this->text = $textServ;
   }
   
   /**
@@ -40,11 +33,7 @@ class TextService
    * @return type - returns the results in the form of json or array.
    */
   public function getResults($text, array $stopWords, $type){
-    $this->text->setType($type);
-    $this->text->setText($text);
-    $this->text->setStopWords($stopWords);
-    
-    return $this->textCalculateService->calculateText($this->text->getText(), $this->text->getStopWords(), $this->text->getType());   
+    return $this->textCalculateService->calculateText($text, $stopWords, $type);   
   }
 }
 
@@ -52,8 +41,11 @@ class TextService
  * contains the object of TextService class.
  * @var str
  */
-$str = new TextService(new TextCalculate(), new Text());
-
-$data = $str->getResults('Lorem ipsum dolor aa sit amet, ex bb his altera aa latine bb', array('Lorem','his','latine'), 'arr');
+$text = new Text();
+$str = new TextService(new TextCalculate(), $text);
+$text->setType('arr');
+$text->setText('Lorem ipsum dolor aa aa sit amet, ex bb his altera aa latine bb');
+$text->setStopWords(array('Lorem','his','latine'));
+$data = $str->getResults($text->getText(),$text->getStopWords() , $text->getType());
 
 print "<pre>";print_r($data);die;
