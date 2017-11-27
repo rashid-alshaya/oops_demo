@@ -38,14 +38,19 @@ class TextService
 }
 
 /**
- * contains the object of TextService class.
- * @var str
+ * contains the string and arr as setter and getter
  */
 $text = new Text();
-$str = new TextService(new TextCalculate(), $text);
 $text->setType('arr');
 $text->setText('Lorem ipsum dolor aa aa sit amet, ex bb his altera aa latine bb');
 $text->setStopWords(array('Lorem','his','latine'));
+
+/**
+ * contains the result as response in the form of array or json.
+ * @var str
+ */
+$str = new TextService(new TextCalculate());
+
 $data = $str->getResults($text->getText(),$text->getStopWords() , $text->getType());
 
 print "<pre>";print_r($data);die;
