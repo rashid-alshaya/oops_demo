@@ -12,7 +12,7 @@ class TextCalculate implements TextCalculateInterface
 {
   /**
    * Validate the string for special characters and extra spaces.
-   * @param type $text
+   * @param string $text
    * @return string
    */
   public function validateText($text) {
@@ -28,10 +28,10 @@ class TextCalculate implements TextCalculateInterface
   /**
    * Calculate and convert string into array and return the desired output
    * in specified format.
-   * @param type $text
+   * @param string $text 
    * @param array $stopWords
-   * @param type $type
-   * @return int
+   * @param string $type
+   * @return type array/json
    */
   public function calculateText($text, array $stopWords, $type = 'json') {
     /**
