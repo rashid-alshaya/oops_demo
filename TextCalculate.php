@@ -31,7 +31,10 @@ class TextCalculate implements TextCalculateInterface
    * @return int
    */
   public function calculateText($text, array $stopWords, $type = 'json') {
-    $this->validateText($text);
+    
+    if($this->validateText($text)){
+      return "Please provide the valid text. Special characters are not allowed in the Text string.";
+    }
     $strArr = explode(' ', $text);
     for($i = 0; $i < count($stopWords); $i++){
       if(strpos($text, $stopWords[$i]) !== FALSE) {
